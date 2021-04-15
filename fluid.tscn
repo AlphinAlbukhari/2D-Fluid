@@ -1,0 +1,749 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://metaball.tscn" type="PackedScene" id=1]
+
+[sub_resource type="Gradient" id=3]
+offsets = PoolRealArray( 0.561111, 0.577778, 0.683333 )
+colors = PoolColorArray( 1, 1, 1, 0, 0.402878, 0.990633, 1, 1, 0, 0.79534, 0.80957, 1 )
+
+[sub_resource type="GradientTexture" id=4]
+gradient = SubResource( 3 )
+
+[sub_resource type="VisualShaderNodeTexture" id=5]
+texture = SubResource( 4 )
+
+[sub_resource type="VisualShaderNodeTextureUniform" id=9]
+uniform_name = "TextureUniform"
+
+[sub_resource type="VisualShader" id=6]
+code = "shader_type canvas_item;
+uniform sampler2D TextureUniform;
+uniform sampler2D tex_frg_4;
+
+
+
+void vertex() {
+// Output:0
+
+}
+
+void fragment() {
+// TextureUniform:5
+	vec3 n_out5p0;
+	float n_out5p1;
+	{
+		vec4 n_tex_read = texture(TextureUniform, UV.xy);
+		n_out5p0 = n_tex_read.rgb;
+		n_out5p1 = n_tex_read.a;
+	}
+
+// Texture:4
+	vec4 tex_frg_4_read = texture(tex_frg_4, n_out5p0.xy);
+	vec3 n_out4p0 = tex_frg_4_read.rgb;
+	float n_out4p1 = tex_frg_4_read.a;
+
+// Output:0
+	COLOR.rgb = n_out4p0;
+	COLOR.a = n_out4p1;
+
+}
+
+void light() {
+// Output:0
+
+}
+"
+graph_offset = Vector2( 911.628, 0 )
+mode = 1
+flags/light_only = false
+nodes/fragment/0/position = Vector2( 2200, 180 )
+nodes/fragment/4/node = SubResource( 5 )
+nodes/fragment/4/position = Vector2( 1840, 100 )
+nodes/fragment/5/node = SubResource( 9 )
+nodes/fragment/5/position = Vector2( 1520, 100 )
+nodes/fragment/connections = PoolIntArray( 5, 0, 4, 0, 4, 1, 0, 1, 4, 0, 0, 0 )
+
+[sub_resource type="ViewportTexture" id=10]
+flags = 4
+viewport_path = NodePath("Viewport")
+
+[sub_resource type="ShaderMaterial" id=7]
+resource_local_to_scene = true
+shader = SubResource( 6 )
+shader_param/TextureUniform = SubResource( 10 )
+
+[sub_resource type="Animation" id=8]
+resource_name = "bounce"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Viewport/StaticBody2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 106.787 ), Vector2( 0, 120 ) ]
+}
+
+[node name="2d metaball" type="Node2D"]
+
+[node name="Viewport" type="Viewport" parent="."]
+size = Vector2( 1024, 600 )
+render_target_v_flip = true
+
+[node name="background" type="ColorRect" parent="Viewport"]
+margin_right = 1024.0
+margin_bottom = 600.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="metaballs" type="Node2D" parent="Viewport"]
+
+[node name="metaball" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 312.258, -71.2764 )
+
+[node name="metaball2" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 358.875, -81.4472 )
+
+[node name="metaball3" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 404.643, -61.1055 )
+
+[node name="metaball4" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 324.972, -120.435 )
+
+[node name="metaball5" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 392.777, -120.435 )
+
+[node name="metaball6" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 358.027, -156.881 )
+
+[node name="metaball7" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 450.862, -69.4277 )
+
+[node name="metaball8" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 499.298, -74.8095 )
+
+[node name="metaball9" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 547.733, -69.4277 )
+
+[node name="metaball10" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 529.511, -98.6689 )
+
+[node name="metaball11" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 474.419, -94.8549 )
+
+[node name="metaball12" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 426.107, -85.5316 )
+
+[node name="metaball13" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 389.662, -82.9889 )
+
+[node name="metaball14" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 368.472, -105.873 )
+
+[node name="metaball15" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 335.417, -85.5316 )
+
+[node name="metaball16" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 446.025, -103.331 )
+
+[node name="metaball17" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 501.965, -108.84 )
+
+[node name="metaball18" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 422.717, -112.654 )
+
+[node name="metaball19" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 350.673, -121.977 )
+
+[node name="metaball20" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 374.405, -138.081 )
+
+[node name="metaball21" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 404.07, -100.364 )
+
+[node name="metaball22" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 462.976, -113.501 )
+
+[node name="metaball23" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 484.166, -130.029 )
+
+[node name="metaball24" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 311.943, -175.319 )
+rotation = 0.0559807
+
+[node name="metaball25" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 359.056, -182.866 )
+rotation = 0.0559807
+
+[node name="metaball26" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 403.614, -159.995 )
+rotation = 0.0559807
+
+[node name="metaball27" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 327.387, -223.69 )
+rotation = 0.0559807
+
+[node name="metaball28" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 395.086, -219.896 )
+rotation = 0.0559807
+
+[node name="metaball29" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 362.43, -258.229 )
+rotation = 0.0559807
+
+[node name="metaball30" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 450.226, -165.719 )
+rotation = 0.0559807
+
+[node name="metaball31" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 498.887, -168.382 )
+rotation = 0.0559807
+
+[node name="metaball32" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 546.945, -160.298 )
+rotation = 0.0559807
+
+[node name="metaball33" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 530.388, -190.513 )
+rotation = 0.0559807
+
+[node name="metaball34" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 475.169, -189.788 )
+rotation = 0.0559807
+
+[node name="metaball35" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 426.411, -183.182 )
+rotation = 0.0559807
+
+[node name="metaball36" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 389.881, -182.683 )
+rotation = 0.0559807
+
+[node name="metaball37" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 370.004, -206.717 )
+rotation = 0.0559807
+
+[node name="metaball38" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 335.863, -188.257 )
+rotation = 0.0559807
+
+[node name="metaball39" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 447.294, -199.839 )
+rotation = 0.0559807
+
+[node name="metaball40" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 503.454, -202.21 )
+rotation = 0.0559807
+
+[node name="metaball41" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 424.544, -210.452 )
+rotation = 0.0559807
+
+[node name="metaball42" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 353.134, -223.791 )
+rotation = 0.0559807
+
+[node name="metaball43" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 377.73, -238.542 )
+rotation = 0.0559807
+
+[node name="metaball44" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 405.238, -199.224 )
+rotation = 0.0559807
+
+[node name="metaball45" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 464.787, -209.045 )
+rotation = 0.0559807
+
+[node name="metaball46" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 486.869, -224.362 )
+rotation = 0.0559807
+
+[node name="metaball47" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 587.274, -327.325 )
+rotation = 3.10009
+
+[node name="metaball48" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 541.119, -315.229 )
+rotation = 3.10009
+
+[node name="metaball49" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 494.547, -333.654 )
+rotation = 3.10009
+
+[node name="metaball50" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 576.611, -277.681 )
+rotation = 3.10009
+
+[node name="metaball51" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 508.864, -274.868 )
+rotation = 3.10009
+
+[node name="metaball52" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 545.096, -239.895 )
+rotation = 3.10009
+
+[node name="metaball53" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 448.713, -323.422 )
+rotation = 3.10009
+
+[node name="metaball54" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 400.542, -316.035 )
+rotation = 3.10009
+
+[node name="metaball55" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 351.925, -319.402 )
+rotation = 3.10009
+
+[node name="metaball56" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 371.345, -290.942 )
+rotation = 3.10009
+
+[node name="metaball57" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 426.231, -297.039 )
+rotation = 3.10009
+
+[node name="metaball58" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 474.115, -308.359 )
+rotation = 3.10009
+
+[node name="metaball59" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 510.423, -312.411 )
+rotation = 3.10009
+
+[node name="metaball60" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 532.544, -290.426 )
+rotation = 3.10009
+
+[node name="metaball61" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 564.727, -312.121 )
+rotation = 3.10009
+
+[node name="metaball62" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 454.952, -289.748 )
+rotation = 3.10009
+
+[node name="metaball63" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 399.289, -281.923 )
+rotation = 3.10009
+
+[node name="metaball64" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 478.627, -281.4 )
+rotation = 3.10009
+
+[node name="metaball65" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 550.996, -275.074 )
+rotation = 3.10009
+
+[node name="metaball66" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 527.953, -258 )
+rotation = 3.10009
+
+[node name="metaball67" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 496.748, -294.453 )
+rotation = 3.10009
+
+[node name="metaball68" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 438.438, -278.884 )
+rotation = 3.10009
+
+[node name="metaball69" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 417.952, -261.491 )
+rotation = 3.10009
+
+[node name="metaball70" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 577.76, -430.072 )
+rotation = 3.10009
+
+[node name="metaball71" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 531.605, -417.976 )
+rotation = 3.10009
+
+[node name="metaball72" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 485.033, -436.401 )
+rotation = 3.10009
+
+[node name="metaball73" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 567.097, -380.428 )
+rotation = 3.10009
+
+[node name="metaball74" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 499.35, -377.615 )
+rotation = 3.10009
+
+[node name="metaball75" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 535.582, -342.642 )
+rotation = 3.10009
+
+[node name="metaball76" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 439.199, -426.168 )
+rotation = 3.10009
+
+[node name="metaball77" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 391.028, -418.782 )
+rotation = 3.10009
+
+[node name="metaball78" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 342.411, -422.149 )
+rotation = 3.10009
+
+[node name="metaball79" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 361.831, -393.689 )
+rotation = 3.10009
+
+[node name="metaball80" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 416.717, -399.786 )
+rotation = 3.10009
+
+[node name="metaball81" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 464.601, -411.106 )
+rotation = 3.10009
+
+[node name="metaball82" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 500.909, -415.158 )
+rotation = 3.10009
+
+[node name="metaball83" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 523.03, -393.173 )
+rotation = 3.10009
+
+[node name="metaball84" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 555.213, -414.868 )
+rotation = 3.10009
+
+[node name="metaball85" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 445.438, -392.495 )
+rotation = 3.10009
+
+[node name="metaball86" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 389.775, -384.67 )
+rotation = 3.10009
+
+[node name="metaball87" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 469.113, -384.147 )
+rotation = 3.10009
+
+[node name="metaball88" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 541.482, -377.821 )
+rotation = 3.10009
+
+[node name="metaball89" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 518.438, -360.747 )
+rotation = 3.10009
+
+[node name="metaball90" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 487.234, -397.2 )
+rotation = 3.10009
+
+[node name="metaball91" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 428.924, -381.631 )
+rotation = 3.10009
+
+[node name="metaball92" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 408.438, -364.238 )
+rotation = 3.10009
+
+[node name="metaball93" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 566.344, -544.236 )
+rotation = 3.10009
+
+[node name="metaball94" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 520.189, -532.14 )
+rotation = 3.10009
+
+[node name="metaball95" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 473.617, -550.565 )
+rotation = 3.10009
+
+[node name="metaball96" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 555.681, -494.592 )
+rotation = 3.10009
+
+[node name="metaball97" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 487.934, -491.779 )
+rotation = 3.10009
+
+[node name="metaball98" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 524.166, -456.806 )
+rotation = 3.10009
+
+[node name="metaball99" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 427.783, -540.332 )
+rotation = 3.10009
+
+[node name="metaball100" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 379.612, -532.946 )
+rotation = 3.10009
+
+[node name="metaball101" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 330.995, -536.313 )
+rotation = 3.10009
+
+[node name="metaball102" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 350.415, -507.853 )
+rotation = 3.10009
+
+[node name="metaball103" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 405.301, -513.95 )
+rotation = 3.10009
+
+[node name="metaball104" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 453.185, -525.27 )
+rotation = 3.10009
+
+[node name="metaball105" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 489.493, -529.322 )
+rotation = 3.10009
+
+[node name="metaball106" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 511.614, -507.337 )
+rotation = 3.10009
+
+[node name="metaball107" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 543.797, -529.032 )
+rotation = 3.10009
+
+[node name="metaball108" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 434.022, -506.659 )
+rotation = 3.10009
+
+[node name="metaball109" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 378.359, -498.834 )
+rotation = 3.10009
+
+[node name="metaball110" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 457.697, -498.311 )
+rotation = 3.10009
+
+[node name="metaball111" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 530.066, -491.985 )
+rotation = 3.10009
+
+[node name="metaball112" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 507.022, -474.911 )
+rotation = 3.10009
+
+[node name="metaball113" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 475.818, -511.364 )
+rotation = 3.10009
+
+[node name="metaball114" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 417.508, -495.795 )
+rotation = 3.10009
+
+[node name="metaball115" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 397.022, -478.402 )
+rotation = 3.10009
+
+[node name="metaball116" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 556.83, -660.302 )
+rotation = 3.10009
+
+[node name="metaball117" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 510.675, -648.206 )
+rotation = 3.10009
+
+[node name="metaball118" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 464.103, -666.631 )
+rotation = 3.10009
+
+[node name="metaball119" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 546.167, -610.659 )
+rotation = 3.10009
+
+[node name="metaball120" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 478.42, -607.845 )
+rotation = 3.10009
+
+[node name="metaball121" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 514.652, -572.872 )
+rotation = 3.10009
+
+[node name="metaball122" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 418.269, -656.398 )
+rotation = 3.10009
+
+[node name="metaball123" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 370.098, -649.012 )
+rotation = 3.10009
+
+[node name="metaball124" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 321.481, -652.379 )
+rotation = 3.10009
+
+[node name="metaball125" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 340.901, -623.919 )
+rotation = 3.10009
+
+[node name="metaball126" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 395.787, -630.016 )
+rotation = 3.10009
+
+[node name="metaball127" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 443.671, -641.336 )
+rotation = 3.10009
+
+[node name="metaball128" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 479.979, -645.388 )
+rotation = 3.10009
+
+[node name="metaball129" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 502.1, -623.403 )
+rotation = 3.10009
+
+[node name="metaball130" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 534.283, -645.098 )
+rotation = 3.10009
+
+[node name="metaball131" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 424.508, -622.725 )
+rotation = 3.10009
+
+[node name="metaball132" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 368.845, -614.9 )
+rotation = 3.10009
+
+[node name="metaball133" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 448.183, -614.377 )
+rotation = 3.10009
+
+[node name="metaball134" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 520.552, -608.051 )
+rotation = 3.10009
+
+[node name="metaball135" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 497.508, -590.977 )
+rotation = 3.10009
+
+[node name="metaball136" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 466.304, -627.43 )
+rotation = 3.10009
+
+[node name="metaball137" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 407.994, -611.861 )
+rotation = 3.10009
+
+[node name="metaball138" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 387.508, -594.468 )
+rotation = 3.10009
+
+[node name="metaball139" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 562.538, -766.855 )
+rotation = 3.10009
+
+[node name="metaball140" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 516.383, -754.759 )
+rotation = 3.10009
+
+[node name="metaball141" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 469.811, -773.184 )
+rotation = 3.10009
+
+[node name="metaball142" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 551.875, -717.211 )
+rotation = 3.10009
+
+[node name="metaball143" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 484.128, -714.398 )
+rotation = 3.10009
+
+[node name="metaball144" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 520.36, -679.425 )
+rotation = 3.10009
+
+[node name="metaball145" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 423.977, -762.951 )
+rotation = 3.10009
+
+[node name="metaball146" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 375.806, -755.564 )
+rotation = 3.10009
+
+[node name="metaball147" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 327.189, -758.932 )
+rotation = 3.10009
+
+[node name="metaball148" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 346.609, -730.472 )
+rotation = 3.10009
+
+[node name="metaball149" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 401.495, -736.569 )
+rotation = 3.10009
+
+[node name="metaball150" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 449.379, -747.889 )
+rotation = 3.10009
+
+[node name="metaball151" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 485.687, -751.941 )
+rotation = 3.10009
+
+[node name="metaball152" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 507.808, -729.956 )
+rotation = 3.10009
+
+[node name="metaball153" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 517.158, -797.317 )
+rotation = 3.10009
+
+[node name="metaball154" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 430.216, -729.278 )
+rotation = 3.10009
+
+[node name="metaball155" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 374.553, -721.453 )
+rotation = 3.10009
+
+[node name="metaball156" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 453.891, -720.93 )
+rotation = 3.10009
+
+[node name="metaball157" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 526.26, -714.604 )
+rotation = 3.10009
+
+[node name="metaball158" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 503.216, -697.53 )
+rotation = 3.10009
+
+[node name="metaball159" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 472.012, -733.983 )
+rotation = 3.10009
+
+[node name="metaball160" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 413.702, -718.413 )
+rotation = 3.10009
+
+[node name="metaball161" parent="Viewport/metaballs" instance=ExtResource( 1 )]
+position = Vector2( 393.216, -701.021 )
+rotation = 3.10009
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Viewport"]
+position = Vector2( 0, 106.787 )
+
+[node name="collision" type="CollisionPolygon2D" parent="Viewport/StaticBody2D"]
+polygon = PoolVector2Array( 176.798, -304.398, 198.832, 374.479, 733.604, 410.619, 749.953, -269.417, 628.864, -210.218, 615.206, 308.366, 272.643, 301.811, 249.452, -307.089 )
+
+[node name="Shader" type="ColorRect" parent="."]
+material = SubResource( 7 )
+margin_right = 1024.0
+margin_bottom = 600.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="wall" type="Polygon2D" parent="."]
+position = Vector2( 0, 106.787 )
+polygon = PoolVector2Array( 176.798, -304.398, 173.738, 424.833, 733.604, 410.619, 749.953, -269.417, 601.758, -218.969, 603.894, 287.203, 273.254, 290.251, 281.397, -302.263 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "bounce"
+anims/bounce = SubResource( 8 )
